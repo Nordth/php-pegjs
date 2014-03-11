@@ -1,0 +1,6 @@
+1. Launch
+   # node test.js
+   to generate example parsers
+
+2. Open in browser test_index.php
+   to test generated parsers
