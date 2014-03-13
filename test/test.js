@@ -17,7 +17,6 @@ function generateParser(input_file, output_file, classname)
 
         var parser = pegjs.buildParser(data.toString(),
             {
-                output: "source",
                 cache: true,
                 plugins: [pegjsphp],
                 pegjsphp: {parserNamespace: 'Parser', parserClassName: classname}
@@ -26,6 +25,8 @@ function generateParser(input_file, output_file, classname)
     });
 
 }
+
+if (!fs.existsSync('output')) fs.mkdirSync('output');
 
 for (var classname in examples)
 {
