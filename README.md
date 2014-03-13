@@ -2,7 +2,11 @@ PHP PEG.js
 ======
 
 PHP PEG.js is a php code generation plugin for 
-[PEG.js](https://github.com/dmajda/pegjs) parser generator.
+[PEG.js](https://github.com/dmajda/pegjs).
+
+## Requirements
+
+* [PEG.js](http://pegjs.majda.cz/) 
 
 Installation
 ------------
@@ -20,12 +24,11 @@ Usage
 
 In Node.js, require both the PEG.js parser generator and the php-pegjs plugin:
 
-    var PEG = require("pegjs");
-    var phpPEG = require("php-pegjs");
+    var pegjs = require("pegjs");
+    var phppegjs = require("php-pegjs");
 
 To generate a php parser, pass to `PEG.buildParser` php-pegjs plugin and your grammar:
 
-    var parser = PEG.buildParser("start = ('a' / 'b')+", {
-        plugins: [pegjsphp]
+    var parser = pegjs.buildParser("start = ('a' / 'b')+", {
+        plugins: [phppegjs]
     });
-
