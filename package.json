@@ -1,0 +1,43 @@
+{
+  "name": "php-pegjs",
+  "version": "0.8.1",
+  "description": "PHP target for PEG.js parser generator",
+  "main": "src/pegjsphp.js",
+  "files": [
+      "LICENSE",
+      "README.md",
+      "examples/arithmetics.pegjs",
+      "examples/css.pegjs",
+      "examples/javascript.pegjs",
+      "examples/json.pegjs",
+      "src/pegjsphp.js",
+      "src/passes/generate-bytecode-php.js",
+      "src/passes/generate-php.js",
+      "test/README",
+      "test/test.js",
+      "test/test_index.php"
+  ],
+  "dependencies": {
+    "pegjs": "~0.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Nordth/php-pegjs.git"
+  },
+  "keywords": [
+    "pegjs",
+    "plugin",
+    "php",
+    "parser",
+    "generator"
+  ],
+  "author": "Elantcev Mikhail",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Nordth/php-pegjs/issues"
+  }
+}
