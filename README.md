@@ -89,7 +89,7 @@ You can use following snippet to format parsing error:
 Grammar Syntax and Semantics
 ----------------------------
 
-See documentation of [PEG.js](http://pegjs.majda.cz/) with one difference: action blocks should be written on PHP. 
+See documentation of [PEG.js](https://github.com/dmajda/pegjs#grammar-syntax-and-semantics) with one difference: action blocks should be written on PHP.
 
 Original PEG.js rule:
 
