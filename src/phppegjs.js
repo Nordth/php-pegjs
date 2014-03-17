@@ -28,7 +28,7 @@ exports.use = function(config, options){
       require("./passes/generate-php")
     ];
     options.output = "source";
-    if (!options.pegjsphp) options.pegjsphp = {};
-    if (options.pegjsphp.parserNamespace === undefined) options.pegjsphp.parserNamespace = 'PegJsPhp';
-    if (options.pegjsphp.parserClassName === undefined) options.pegjsphp.parserClassName = 'Parser';
+    if (!options.phppegjs) options.phppegjs = {};
+    if (options.phppegjs.parserNamespace === undefined) options.phppegjs.parserNamespace = 'PhpPegJs';
+    if (options.phppegjs.parserClassName === undefined) options.phppegjs.parserClassName = 'Parser';
 };

@@ -47,8 +47,8 @@ Supported options of `pegjs.buildParser`:
 
 Additional PHP PEG.js plugin options:  
 
-  * `pegjsphp.parserNamespace` - namespace of generated parser (default: `"PegJsPhp"`). If value is `""`, parser will be in global namespace
-  * `pegjsphp.parserClassName` - name of generated class for parser (default: `"Parser"`)
+  * `phppegjs.parserNamespace` - namespace of generated parser (default: `"PhpPegJs"`). If value is `""`, parser will be in global namespace
+  * `phppegjs.parserClassName` - name of generated class for parser (default: `"Parser"`)
 
 Using the Parser
 ----------------
@@ -61,10 +61,10 @@ Using the Parser
     
     try
     {
-        $parser = new PegJsPhp\Parser;
+        $parser = new PhpPegJs\Parser;
         $result = $parser->parse($input);
     }
-    catch (PegJsPhp\SyntaxError $ex)
+    catch (PhpPegJs\SyntaxError $ex)
     {
         // Handle parsing error
         // [...]
@@ -72,7 +72,7 @@ Using the Parser
 
 You can use following snippet to format parsing error:
 
-    catch (PegJsPhp\SyntaxError $ex)
+    catch (PhpPegJs\SyntaxError $ex)
     {
         $exc_expected = array();
         foreach ($ex->expected as $expect)

@@ -1,6 +1,6 @@
 var fs = require('fs');
 var pegjs = require('pegjs');
-var pegjsphp = require('../src/pegjsphp.js');
+var phppegjs = require('../src/phppegjs.js');
 
 var examples =
 {
@@ -18,8 +18,8 @@ function generateParser(input_file, output_file, classname)
         var parser = pegjs.buildParser(data.toString(),
             {
                 cache: true,
-                plugins: [pegjsphp],
-                pegjsphp: {parserNamespace: 'Parser', parserClassName: classname}
+                plugins: [phppegjs],
+                phppegjs: {parserNamespace: 'Parser', parserClassName: classname}
             });
         fs.writeFile(output_file, parser);
     });
