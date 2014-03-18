@@ -264,7 +264,7 @@ module.exports = function(ast, options) {
                     case op.TEXT:             // TEXT
                         stack.pop();
                         parts.push(
-                                stack.push('mb_substr($this->input, ' + stack.top() + ', ' + stack.top() + ' + $this->peg_currPos, "UTF-8")')
+                                stack.push('mb_substr($this->input, ' + stack.top() + ', $this->peg_currPos - ' + stack.top() + ', "UTF-8")')
                                 );
                         ip++;
                         break;
