@@ -1,6 +1,6 @@
 {
   "name": "php-pegjs",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "PHP target for PEG.js parser generator",
   "main": "src/phppegjs.js",
   "files": [

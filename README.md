@@ -74,16 +74,7 @@ You can use following snippet to format parsing error:
 
     catch (PhpPegJs\SyntaxError $ex)
     {
-        $exc_expected = array();
-        foreach ($ex->expected as $expect)
-        {
-            $exc_expected[] = $expect['description'];
-        }
-        $message = "Syntax error: found '". $ex->found . "' " .
-                   "but expected one of: " . join(", ", $exc_expected) . '. ' .
-                   'At line ' . $ex->grammarLine . 
-                   ' column ' . $ex->grammarColumn . 
-                   ' offset ' . $ex->grammarOffset;
+        $message = "Syntax error: " . $ex->getMessage() . ' At line ' . $ex->grammarLine . ' column ' . $ex->grammarColumn . ' offset ' . $ex->grammarOffset;
     }
 
 Grammar Syntax and Semantics

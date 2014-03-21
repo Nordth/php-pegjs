@@ -28,10 +28,7 @@ if (isset($_POST['code'], $_POST['parser']) && isset($examples[$_POST['parser']]
         }
         catch (Parser\SyntaxError $ex)
         {
-            $exc_expected = array();
-            foreach ($ex->expected as $expect) $exc_expected[] = $expect['description'];
-            $error = "Syntax error: found '". $ex->found . "' but expected one of: " . join(", ", $exc_expected) . '. ' .
-                     'At line ' . $ex->grammarLine . ' column ' . $ex->grammarColumn . ' offset ' . $ex->grammarOffset;
+            $error = "Syntax error: " . $ex->getMessage() . ' At line ' . $ex->grammarLine . ' column ' . $ex->grammarColumn . ' offset ' . $ex->grammarOffset;
         }
         $parsing_time = microtime(true) - $start;
     }
