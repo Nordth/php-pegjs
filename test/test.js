@@ -4,6 +4,7 @@ var phppegjs = require('../src/phppegjs.js');
 
 var examples =
 {
+    'Digits':      'digits.pegjs',
     'Arithmetics': 'arithmetics.pegjs',
     'Json':        'json.pegjs',
     'Css':         'css.pegjs',

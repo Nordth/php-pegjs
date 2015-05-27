@@ -1,6 +1,7 @@
 <?php
 
 $examples = array(
+    'Digits'      => 'output/digits.php',
     'Arithmetics' => 'output/arithmetics.php',
     'Json'        => 'output/json.php',
     'Css'         => 'output/css.php',
