@@ -472,6 +472,25 @@ module.exports = function(ast, options) {
     if (options.cache) {
         parts.push('    public $peg_cache = array();');
     }
+
+    parts.push([
+        '',
+        '    private function cleanup_state(){',
+        '      $this->peg_currPos          = 0;',
+        '      $this->peg_reportedPos      = 0;',
+        '      $this->peg_cachedPos        = 0;',
+        "      $this->peg_cachedPosDetails = array('line' => 1, 'column' => 1, 'seenCR' => false );",
+        '      $this->peg_maxFailPos       = 0;',
+        '      $this->peg_maxFailExpected  = array();',
+        '      $this->peg_silentFails      = 0;',
+        '      $this->input                = "";',
+
+               options.cache ?
+        '      $this->peg_cache = array();' : '',
+
+        '    }',
+        ''
+    ].join('\n'));
     
     parts.push([
         '',
@@ -651,6 +670,7 @@ module.exports = function(ast, options) {
         '  public function parse($input) {',
         '    $arguments = func_get_args();',
         '    $options = count($arguments) > 1 ? $arguments[1] : array();',
+        '    $this->cleanup_state();',
         '    $this->input = $input;',
         '    $old_regex_encoding = mb_regex_encoding();',
         '    mb_regex_encoding("UTF-8");',

@@ -1,6 +1,6 @@
 {
   "name": "php-pegjs",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "PHP target for PEG.js parser generator",
   "main": "src/phppegjs.js",
   "files": [
@@ -10,6 +10,7 @@
       "examples/css.pegjs",
       "examples/javascript.pegjs",
       "examples/json.pegjs",
+      "examples/digits.pegjs",
       "src/phppegjs.js",
       "src/passes/generate-bytecode-php.js",
       "src/passes/generate-php.js",
