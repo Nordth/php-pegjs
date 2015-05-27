@@ -114,8 +114,8 @@ Guide of converting PEG.js action blocks to PHP PEG.js
 | Javascript code                   | PHP analogue                              | 
 | --------------------------------- | ----------------------------------------- |
 | `some_var`                        | `$some_var`                               |
-| `{f1: "val1", f2: "val2"]`        | `array("val1", "val2")`                   |
-| `["val1", "val2"]`                | `array("f1" => "val1", "f2" => "val2")`   |
+| `{f1: "val1", f2: "val2"}`        | `array("f1" => "val1", "f2" => "val2")`   |
+| `["val1", "val2"]`                | `array("val1", "val2")`                   |
 | `some_array.push("val")`          | `$some_array[] = "val"`                   |
 | `some_array.length`               | `count($some_array)`                      |
 | `some_array.join("")`             | `join("", $some_array)`                   |
