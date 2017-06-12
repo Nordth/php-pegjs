@@ -201,7 +201,7 @@ var utils = require("pegjs/lib/utils"),
  */
 module.exports = function(ast) {
   var consts = [];
-  
+
   function addConst(value) {
     var index = utils.indexOf(consts, function(c) { return c === value; });
 
@@ -209,14 +209,13 @@ module.exports = function(ast) {
   }
 
   function addFunctionConst(params, code) {
-      var res = "function(" ;
-      var first = true;
-      for (var i = 0; i < params.length; i++) 
-      {
-          if (!first) res += ',';
-          res += '$' + params[i];
-          first = false;
-      }
+    var res = "function(" ;
+    var first = true;
+    for (var i = 0; i < params.length; i++) {
+        if (!first) res += ',';
+        res += '$' + params[i];
+        first = false;
+    }
     return addConst(res + ") {" + code + "}");
   }
 
