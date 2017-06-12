@@ -29,7 +29,8 @@
  * 
  */
 var utils = require("pegjs/lib/utils"),
-    op    = require("pegjs/lib/compiler/opcodes");
+    op    = require("pegjs/lib/compiler/opcodes"),
+    internalUtils = require("../utils");
 
 /* Generates bytecode.
  *
@@ -216,7 +217,7 @@ module.exports = function(ast) {
         res += '$' + params[i];
         first = false;
     }
-    return addConst(res + ") {" + code + "}");
+    return addConst(res + ") {" + internalUtils.extractPhpCode( code ) + "}");
   }
 
   function buildSequence() {

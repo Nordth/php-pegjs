@@ -23,7 +23,8 @@
  */
 
 var utils = require("pegjs/lib/utils"),
-    op    = require("pegjs/lib/compiler/opcodes");
+    op    = require("pegjs/lib/compiler/opcodes"),
+    internalUtils = require("../utils");
 
 /* Generates parser Php code. */
 module.exports = function(ast, options) {
@@ -707,7 +708,9 @@ module.exports = function(ast, options) {
     ].join('\n'));
 
     if (ast.initializer) {
-        parts.push(indent4(ast.initializer.code));
+        parts.push(indent4(
+            internalUtils.extractPhpCode(ast.initializer.code)
+        ));
         parts.push('');
     }
 
