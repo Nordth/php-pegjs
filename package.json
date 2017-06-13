@@ -12,6 +12,7 @@
       "examples/json.pegjs",
       "examples/digits.pegjs",
       "src/phppegjs.js",
+      "src/utils.js",
       "src/passes/generate-bytecode-php.js",
       "src/passes/generate-php.js",
       "test/README",
@@ -36,7 +37,10 @@
     "parser",
     "generator"
   ],
-  "author": "Elantcev Mikhail",
+  "contributors": [
+    "Elantcev Mikhail",
+    "James Nylen <jnylen@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Nordth/php-pegjs/issues"
