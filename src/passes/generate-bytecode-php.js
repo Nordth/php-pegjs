@@ -273,7 +273,7 @@ module.exports = function(ast) {
 
   function buildSemanticPredicate(code, negative, context) {
     var functionIndex  = addFunctionConst(utils.keys(context.env), code),
-        undefinedIndex = addConst('void 0'),
+        undefinedIndex = addConst('null'), // addConst('void 0'),
         failedIndex    = addConst('$this->peg_FAILED');
 
     return buildSequence(
