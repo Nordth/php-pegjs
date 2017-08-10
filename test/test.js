@@ -13,17 +13,15 @@ var examples =
 
 function generateParser(input_file, output_file, classname)
 {
-    fs.readFile(input_file, function (err, data) {
-        if (err) throw err;
-
-        var parser = pegjs.buildParser(data.toString(),
-            {
-                cache: true,
-                plugins: [phppegjs],
-                phppegjs: {parserNamespace: 'Parser', parserClassName: classname}
-            });
-        fs.writeFile(output_file, parser);
-    });
+    var data = fs.readFileSync(input_file);
+    
+    var parser = pegjs.buildParser(data.toString(),
+        {
+            cache: true,
+            plugins: [phppegjs],
+            phppegjs: {parserNamespace: 'Parser', parserClassName: classname}
+        });
+    fs.writeFileSync(output_file, parser);
 
 }
 
