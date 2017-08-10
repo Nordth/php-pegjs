@@ -1,6 +1,8 @@
 PHP PEG.js
 ======
 
+> ** This repo is not maintained for a while please use [phpegjs](https://github.com/nylen/phpegjs) module instead **
+
 PHP PEG.js is a php code generation plugin for 
 [PEG.js](https://github.com/dmajda/pegjs).
 
