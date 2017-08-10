@@ -41,6 +41,10 @@ module.exports = function(ast, options) {
     function indent10(code) {
         return code.replace(/^(.+)$/gm, '          $1');
     }
+    
+    function unescape(const_str){
+        return JSON.parse(const_str.replace(/\\\$/g, '$'));
+    }
 
     function generateTablesDeclaration() {
         return utils.map(
@@ -292,7 +296,7 @@ module.exports = function(ast, options) {
                     case op.MATCH_STRING:     // MATCH_STRING s, a, f, ...
                         compileCondition(
                                 'mb_substr($this->input, $this->peg_currPos, '
-                                + eval(ast.consts[bc[ip + 1]]).length
+                                + unescape(ast.consts[bc[ip + 1]]).length
                                 + ', "UTF-8") === '
                                 + c(bc[ip + 1]),
                                 1
@@ -302,7 +306,7 @@ module.exports = function(ast, options) {
                     case op.MATCH_STRING_IC:  // MATCH_STRING_IC s, a, f, ...
                         compileCondition(
                                 'mb_strtolower(mb_substr($this->input, $this->peg_currPos, '
-                                + eval(ast.consts[bc[ip + 1]]).length
+                                + unescape(ast.consts[bc[ip + 1]]).length
                                 + ', "UTF-8"), "UTF-8") === '
                                 + c(bc[ip + 1]),
                                 1
@@ -331,8 +335,8 @@ module.exports = function(ast, options) {
                     case op.ACCEPT_STRING:    // ACCEPT_STRING s
                         parts.push(stack.push(c(bc[ip + 1])));
                         parts.push(
-                                eval(ast.consts[bc[ip + 1]]).length > 1
-                                ? '$this->peg_currPos += ' + eval(ast.consts[bc[ip + 1]]).length + ';'
+                                unescape(ast.consts[bc[ip + 1]]).length > 1
+                                ? '$this->peg_currPos += ' + unescape(ast.consts[bc[ip + 1]]).length + ';'
                                 : '$this->peg_currPos++;'
                                 );
                         ip += 2;

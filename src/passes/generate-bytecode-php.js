@@ -357,7 +357,7 @@ module.exports = function(ast) {
 
     named: function(node, context) {
       var nameIndex = addConst(
-        'array("type" => "other", "description" => ' + utils.quote(node.name) + ' )'
+        'array("type" => "other", "description" => ' + quotePhp(node.name) + ' )'
       );
 
       /*
