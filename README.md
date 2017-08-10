@@ -127,8 +127,27 @@ Guide of converting PEG.js action blocks to PHP PEG.js
 | `some_str.length`                 | `mb_strlen(some_str, "UTF-8")`            |
 | `some_str.replace("b", "\b")`     | `str_replace("b", "\b", $some_str)`       |
 | `String.fromCharCode(2323)`       | `chr_unicode(2323)`                       |
+| `text()`                          | `$this->text()`                           |
+| `location()`                      | `$this->location()`                       |
+
+
+Function `$this->location()` returns object with following structure:
+
+    {
+      'start' => {
+         'offset' => int,
+         'line'   => int,
+         'column' => int,
+      },
+      'end' => {
+         'offset' => int,
+         'line'   => int,
+         'column' => int,
+      },
+    }
 
 License
 -------
 
 [The MIT License (MIT)](http://opensource.org/licenses/MIT)
+ 
