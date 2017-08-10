@@ -300,6 +300,46 @@ module.exports = function(ast) {
     );
   }
 
+    function quoteForPhpRegexp(s)
+    {
+         return s
+          .replace(/\\/g, '\\\\')  // backslash
+          .replace(/\//g, '\\/')   // closing slash
+          .replace(/\[/g, '\\[')   // opening ) bracket
+          .replace(/\]/g, '\\]')   // closing ) bracket
+          .replace(/\(/g, '\\(')   // opening ( bracket
+          .replace(/\)/g, '\\)')   // closing ( bracket
+          .replace(/\^/g, '\\^')   // caret
+          .replace(/\$/g, '\\$')   // dollar
+          .replace(/([^\[])-/g,  '$1\\-')   // dash
+          .replace(/\0/g, '\\0')   // null
+          .replace(/\t/g, '\\t')   // horizontal tab
+          .replace(/\n/g, '\\n')   // line feed
+          .replace(/\v/g, '\\x0B') // vertical tab
+          .replace(/\f/g, '\\f')   // form feed
+          .replace(/\r/g, '\\r')   // carriage return
+          .replace(/[\x00-\x07\x0B\x0E-\x1F\x80-\xFF]/g, utils.escape)
+          .replace(/[\xFF-\uFFFF]/g, function(ch) {
+              var charCode = ch.charCodeAt(0);
+              return '\\x{' + utils.padLeft(charCode.toString(16).toUpperCase(), '0', 4) + '}';
+            });
+    }
+
+    function quotePhp(s)
+    {          
+          return '"' + s
+            .replace(/\\/g, '\\\\')  // backslash
+            .replace(/"/g, '\\"')    // closing quote character
+            .replace(/\x08/g, '\\b') // backspace
+            .replace(/\t/g, '\\t')   // horizontal tab
+            .replace(/\n/g, '\\n')   // line feed
+            .replace(/\f/g, '\\f')   // form feed
+            .replace(/\r/g, '\\r')   // carriage return
+            .replace(/\$/g, '\\$')   // dollar
+            .replace(/[\x00-\x07\x0B\x0E-\x1F\x80-\xFF]/g, utils.escape)
+            + '"';
+    }
+
   var generate = utils.buildNodeVisitor({
     grammar: function(node) {
       utils.each(node.rules, generate);
@@ -557,14 +597,14 @@ module.exports = function(ast) {
 
       if (node.value.length > 0) {
         stringIndex = addConst(node.ignoreCase
-          ? utils.quote(node.value.toLowerCase())
-          : utils.quote(node.value)
+          ? quotePhp(node.value.toLowerCase())
+          : quotePhp(node.value)
         );
         expectedIndex = addConst([
           'array(',
           '"type" => "literal",',
-          '"value" => ' + utils.quote(node.value) + ',',
-          '"description" => ' + utils.quote(utils.quote(node.value)),
+          '"value" => ' + quotePhp(node.value) + ',',
+          '"description" => ' + quotePhp(quotePhp(node.value)),
           ')'
         ].join(' '));
 
@@ -592,46 +632,6 @@ module.exports = function(ast) {
     "class": function(node) {
       var regexp, regexpIndex, expectedIndex;
       
-      function quoteForPhpRegexp(s)
-      {
-           return s
-            .replace(/\\/g, '\\\\')  // backslash
-            .replace(/\//g, '\\/')   // closing slash
-            .replace(/\[/g, '\\[')   // opening ) bracket
-            .replace(/\]/g, '\\]')   // closing ) bracket
-            .replace(/\(/g, '\\(')   // opening ( bracket
-            .replace(/\)/g, '\\)')   // closing ( bracket
-            .replace(/\^/g, '\\^')   // caret
-            .replace(/\$/g, '\\$')   // dollar
-            .replace(/([^\[])-/g,  '$1\\-')   // dash
-            .replace(/\0/g, '\\0')   // null
-            .replace(/\t/g, '\\t')   // horizontal tab
-            .replace(/\n/g, '\\n')   // line feed
-            .replace(/\v/g, '\\x0B') // vertical tab
-            .replace(/\f/g, '\\f')   // form feed
-            .replace(/\r/g, '\\r')   // carriage return
-            .replace(/[\x00-\x07\x0B\x0E-\x1F\x80-\xFF]/g, utils.escape)
-            .replace(/[\xFF-\uFFFF]/g, function(ch) {
-                var charCode = ch.charCodeAt(0);
-                return '\\x{' + utils.padLeft(charCode.toString(16).toUpperCase(), '0', 4) + '}';
-              });
-      }
-            
-      function quotePhp(s)
-      {          
-            return '"' + s
-              .replace(/\\/g, '\\\\')  // backslash
-              .replace(/"/g, '\\"')    // closing quote character
-              .replace(/\x08/g, '\\b') // backspace
-              .replace(/\t/g, '\\t')   // horizontal tab
-              .replace(/\n/g, '\\n')   // line feed
-              .replace(/\f/g, '\\f')   // form feed
-              .replace(/\r/g, '\\r')   // carriage return
-              .replace(/\$/g, '\\$')   // dollar
-              .replace(/[\x00-\x07\x0B\x0E-\x1F\x80-\xFF]/g, utils.escape)
-              + '"';
-      }
-
       if (node.parts.length > 0) {
         regexp = '/^['
           + (node.inverted ? '^' : '')
